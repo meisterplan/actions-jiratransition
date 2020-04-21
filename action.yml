@@ -1,0 +1,25 @@
+name: 'Jira Transition'
+description: 'Transition Jira issues'
+author: itdesign GmbH
+inputs:
+  transition_name:
+    description: 'Name of the Transition'
+    required: true
+    service_base_url:
+    description: 'Base URL of the transition service, including credentials'
+    required: true
+  search_pattern:
+    description: 'Search pattern to search for Jira issues in git logs'
+    required: false
+  commit_depth:
+    description: 'Git Commit Depth'
+    required: false
+  jql_extension:
+    description: 'Additional jql that should be included'
+    required: false
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
+branding:
+  icon: 'arrow-right-circle'
+  color: 'blue'
