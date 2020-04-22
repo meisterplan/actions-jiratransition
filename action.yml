@@ -5,7 +5,7 @@ inputs:
   transition_name:
     description: 'Name of the Transition'
     required: true
-    service_base_url:
+  service_base_url:
     description: 'Base URL of the transition service, including credentials'
     required: true
   search_pattern:
