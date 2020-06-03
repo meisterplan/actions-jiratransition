@@ -14,7 +14,7 @@ inputs:
   commit_depth:
     description: 'Git Commit Depth'
     required: false
-  jql_extension:
+  additional_jql:
     description: 'Additional jql that should be included'
     required: false
 runs:
