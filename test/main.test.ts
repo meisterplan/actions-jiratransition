@@ -6,8 +6,8 @@ import fs from 'fs';
 test('test runs', () => {
   const gitRepoDir = path.join(__dirname, '..', 'test-git-repo');
 
-  if (!process.env.JIRAJELLYFISH_BASE_URL) {
-    fail('You need to configure the environment variable JIRAJELLYFISH_BASE_URL before you run the test.');
+  if (!process.env.SERVICE_BASE_URL) {
+    fail('You need to configure the environment variable SERVICE_BASE_URL before you run the test.');
     return;
   }
 
@@ -20,7 +20,7 @@ test('test runs', () => {
   const options: cp.ExecSyncOptions = {
     env: {
       INPUT_TRANSITION_NAME: 'In Build',
-      INPUT_JIRAJELLYFISH_BASE_URL: process.env.JIRAJELLYFISH_BASE_URL,
+      INPUT_SERVICE_BASE_URL: process.env.SERVICE_BASE_URL,
     },
     cwd: gitRepoDir,
   };
