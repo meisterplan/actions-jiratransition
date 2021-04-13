@@ -19,7 +19,8 @@ const main = async () => {
       // https://community.atlassian.com/t5/Jira-questions/JQL-search-by-issueId-fails-if-issue-key-LIST-has-a-deleted/qaq-p/99570#M242348
       const issueList = issues.map((i) => i.toLowerCase()).join(', ');
       const jql = `key IN (${issueList}) ${additionalJql}`;
-      const url = `${serviceBaseUrl}/transition?selectorJql=${encodeURIComponent(jql)}&transitionName=${encodeURIComponent(transitionName)}`;
+      const encodedJql = Buffer.from(jql).toString('base64');
+      const url = `${serviceBaseUrl}/transition?selectorJql=${encodedJql}&transitionName=${encodeURIComponent(transitionName)}`;
 
       info(`${issues.length} issues are matching '${searchPattern}': ${issues.join(', ')}`);
       info(`Built jql search pattern: ${jql}`);
