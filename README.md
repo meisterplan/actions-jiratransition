@@ -6,6 +6,10 @@ This action allows transitioning tickets in Jira Server.
 
 After changing the action's code, the action must be rebuilt and packaged via `yarn all` and the changes in the `dist` folder must be commited.
 
+## Release
+
+After commiting a new version, you have to move the Major version tag or create a new one, as described in the [GitHub Actions docs](https://docs.github.com/en/actions/creating-actions/about-actions#using-tags-for-release-management): `git tag -fa v1`. 
+
 ## Usage
 
 ### Pre-requisites
