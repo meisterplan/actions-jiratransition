@@ -943,7 +943,7 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
         }
     }
     catch (err) {
-        core_1.setFailed(`Failed to transition Jira issues: ${err.message}`);
+        core_1.setFailed(`Failed to transition Jira issues: ${JSON.stringify(err)}`);
     }
 });
 const findIssues = (searchPattern, commitDepth) => {

@@ -28,7 +28,7 @@ const main = async () => {
       await axios.get(url).catch((e) => setFailed(`Failed to execute transitions:\n${e.response.data}`));
     }
   } catch (err) {
-    setFailed(`Failed to transition Jira issues: ${err.message}`);
+    setFailed(`Failed to transition Jira issues: ${JSON.stringify(err)}`);
   }
 };
 
