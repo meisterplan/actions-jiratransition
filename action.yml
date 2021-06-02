@@ -11,6 +11,9 @@ inputs:
   search_pattern:
     description: 'Search pattern to search for Jira issues in git logs'
     required: false
+  ignore_pattern:
+    description: 'Ignore pattern that excludes issues references in this line of the commit message'
+    required: false
   commit_depth:
     description: 'Git Commit Depth'
     required: false
