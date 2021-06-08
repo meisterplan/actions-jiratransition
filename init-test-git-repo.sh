@@ -21,7 +21,7 @@ git merge --no-ff --no-edit feature/KNUTH-1002
 git checkout -b feature/KNUTH-1003
 touch file3
 git add file3
-git commit -m "Complete Feature 3" -m "KNUTH-1003"
+git commit -m "Complete Feature 3" -m "refs KNUTH-1003"
 git checkout master
 git merge --no-ff --no-edit feature/KNUTH-1003
 

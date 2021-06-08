@@ -7,10 +7,11 @@ const main = async () => {
     const transitionName: string = getInput('transition_name', { required: true });
     const serviceBaseUrl: string = getInput('service_base_url', { required: true });
     const searchPattern: string = getInput('search_pattern', { required: false }) || 'KNUTH-[0-9]+';
+    const ignorePattern: string = getInput('ignore_pattern', { required: false }) || 'refs?';
     const commitDepth: number = parseInt(getInput('commit_depth', { required: false }) || '10');
     const additionalJql: string = getInput('additional_jql', { required: false }) || "AND status NOT IN ('Ready for Test', 'Ready for Release', 'Closed')";
 
-    const issues = findIssues(searchPattern, commitDepth);
+    const issues = findIssues(searchPattern, ignorePattern, commitDepth);
 
     if (issues.length === 0) {
       info(`Didn't find any issues in git log matching ${searchPattern}.`);
@@ -32,9 +33,11 @@ const main = async () => {
   }
 };
 
-const findIssues = (searchPattern: string, commitDepth: number): string[] => {
-  const commitMessages = execSync(`git log -n ${commitDepth} --no-merges --format=%B`).toString();
-  const issues: string[] = commitMessages.match(new RegExp(`${searchPattern}`, 'g')) || [];
+const findIssues = (searchPattern: string, ignorePattern: string, commitDepth: number): string[] => {
+  const commitMessageLines = execSync(`git log -n ${commitDepth} --no-merges --format=%B`).toString().split('\n');
+  const issues: string[] = commitMessageLines
+    .filter((line) => !line.match(new RegExp(ignorePattern)))
+    .flatMap((line) => line.match(new RegExp(`${searchPattern}`, 'g')) || []);
   return issues;
 };
 
