@@ -24,7 +24,7 @@ For more information, reference the GitHub Help Documentation for [Creating a wo
 - `search_pattern` (optional) - Pattern that should be used to find issues in Git log (default: `KNUTH-[0-9]+`)
 - `ignore_pattern` (optional) - Pattern that excludes issues references in this line of the commit message (default: `refs?`)
 - `commit_depth` (optional) - Defines how many Git commits should be inspected (default: `10`)
-- `additional_jql` (optional) - Defines JQL that should be included at the end of the JQL query (default: `AND status NOT IN ('Ready for Test', 'Ready for Release', 'Closed')`)
+- `additional_jql` (optional) - Defines JQL that should be included at the end of the JQL query (default: `AND status NOT IN ('Ready for Test', 'Ready for Prod-Deploy', 'Closed')`)
 
 ### Example workflow
 

@@ -9,7 +9,7 @@ const main = async () => {
     const searchPattern: string = getInput('search_pattern', { required: false }) || 'KNUTH-[0-9]+';
     const ignorePattern: string = getInput('ignore_pattern', { required: false }) || 'refs?';
     const commitDepth: number = parseInt(getInput('commit_depth', { required: false }) || '10');
-    const additionalJql: string = getInput('additional_jql', { required: false }) || "AND status NOT IN ('Ready for Test', 'Ready for Release', 'Closed')";
+    const additionalJql: string = getInput('additional_jql', { required: false }) || "AND status NOT IN ('Ready for Test', 'Ready for Prod-Deploy', 'Closed')";
 
     const issues = findIssues(searchPattern, ignorePattern, commitDepth);
 
