@@ -965,7 +965,7 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
         const searchPattern = core_1.getInput('search_pattern', { required: false }) || 'KNUTH-[0-9]+';
         const ignorePattern = core_1.getInput('ignore_pattern', { required: false }) || 'refs?';
         const commitDepth = parseInt(core_1.getInput('commit_depth', { required: false }) || '10');
-        const additionalJql = core_1.getInput('additional_jql', { required: false }) || "AND status NOT IN ('Ready for Test', 'Ready for Release', 'Closed')";
+        const additionalJql = core_1.getInput('additional_jql', { required: false }) || "AND status NOT IN ('Ready for Test', 'Ready for Prod-Deploy', 'Closed')";
         const issues = findIssues(searchPattern, ignorePattern, commitDepth);
         if (issues.length === 0) {
             core_1.info(`Didn't find any issues in git log matching ${searchPattern}.`);
