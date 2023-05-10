@@ -1,7 +1,10 @@
 {
   "plugins": ["@typescript-eslint"],
-  "extends": ["plugin:github/es6"],
+  "extends": ["plugin:github/recommended"],
   "parser": "@typescript-eslint/parser",
+  "rules": {
+    "i18n-text/no-en": "off"
+  },
   "parserOptions": {
     "ecmaVersion": 9,
     "sourceType": "module",
@@ -10,5 +13,6 @@
   "env": {
     "node": true,
     "es6": true
-  }
+  },
+  "ignorePatterns": ["test/**"]
 }
