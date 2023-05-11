@@ -1,6 +1,6 @@
 import { getInput, setFailed, info } from '@actions/core';
 import { execSync } from 'child_process';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 const main = async () => {
   try {
@@ -26,7 +26,15 @@ const main = async () => {
       info(`${issues.length} issues are matching '${searchPattern}': ${issues.join(', ')}`);
       info(`Built jql search pattern: ${jql}`);
       info(`Transitioning them to '${transitionName}'...`);
-      await axios.get(url).catch((e) => setFailed(`Failed to execute transitions:\n${e.response.data}`));
+      try {
+        await axios.get(url);
+      } catch (e) {
+        if (e instanceof AxiosError) {
+          setFailed(`Failed to execute transitions:\n${e.response?.data}`);
+        } else {
+          setFailed(`Failed to execute transitions:\n${e}`);
+        }
+      }
     }
   } catch (err) {
     setFailed(`Failed to transition Jira issues: ${JSON.stringify(err)}`);

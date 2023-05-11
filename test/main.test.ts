@@ -7,13 +7,11 @@ test('test runs', () => {
   const gitRepoDir = path.join(__dirname, '..', 'test-git-repo');
 
   if (!process.env.SERVICE_BASE_URL) {
-    fail('You need to configure the environment variable SERVICE_BASE_URL before you run the test.');
-    return;
+    throw new Error('You need to configure the environment variable SERVICE_BASE_URL before you run the test.');
   }
 
   if (!fs.existsSync(gitRepoDir)) {
-    fail('You need to create a git repository under ./test-git-repo to run this test, you may use "init-test-git-repo.sh" to create a repository.');
-    return;
+    throw new Error('You need to create a git repository under ./test-git-repo to run this test, you may use "init-test-git-repo.sh" to create a repository.');
   }
 
   const ip = path.join(__dirname, '..', 'lib', 'main.js');
@@ -27,9 +25,9 @@ test('test runs', () => {
   try {
     // eslint-disable-next-line no-console
     console.log(cp.execSync(`node ${ip}`, options).toString());
-  } catch (error) {
+  } catch (error: any) {
     // eslint-disable-next-line no-console
     console.log(error.stdout.toString());
-    fail(`execSync threw an error: ${error.stdout.toString()}`);
+    throw new Error(`execSync threw an error: ${error.stdout.toString()}`);
   }
 });
