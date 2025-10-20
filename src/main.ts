@@ -30,14 +30,14 @@ const main = async () => {
         await axios.get(url);
       } catch (e) {
         if (e instanceof AxiosError) {
-          setFailed(`Failed to execute transitions:\n${e.response?.data}`);
+          setFailed(`Failed to execute transitions:\n${JSON.stringify(e.response?.data)}`);
         } else {
           setFailed(`Failed to execute transitions:\n${e}`);
         }
       }
     }
-  } catch (err) {
-    setFailed(`Failed to transition Jira issues: ${JSON.stringify(err)}`);
+  } catch (err: any) {
+    setFailed(`Failed to transition Jira issues: ${err.message}\n${err.stack}`);
   }
 };
 
